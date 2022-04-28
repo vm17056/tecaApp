@@ -2,6 +2,7 @@ package com.sv.proye.tecaapp.dto;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
 
@@ -111,5 +112,18 @@ public class UsuarioDao extends DatabaseHandler<Usuario> implements DataObjectSe
     @Override
     public Usuario buscarModeloPodId(Integer id) {
         return getSingleModelById(id);
+    }
+
+    public Usuario validarUsuario(Usuario usuario) {
+        Usuario usuariox = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(getTableName(), prepareKeysSelection(), " USERNAME = ? AND USERPASS = ? ",
+                new String[]{usuario.getUserName(), usuario.getUserPass()}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            usuariox = parseCursorToModel(cursor);
+        }
+        db.close();
+        return usuariox;
     }
 }

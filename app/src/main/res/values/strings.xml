@@ -12,6 +12,11 @@
     <string name="menu_home">Inicio</string>
     <string name="menu_usuarios">Usuarios</string>
     <string name="menu_autores">Autores</string>
+    <string name="menu_libros">Libros</string>
+    <string name="menu_deseados">Libros Deseados</string>
+    <string name="menu_coleccion">Colecciones</string>
+    <string name="menu_coleccionlibro">Colecciones de Libros</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -56,4 +61,7 @@
     <string name="textEmail">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@._</string>
     <string name="numbers">1234567890</string>
     <string name="numeric">1234567890.,</string>
+    <string name="title_activity_prueba_draweb">pruebaDrawebActivity</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 </resources>

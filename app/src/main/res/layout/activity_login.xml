@@ -72,6 +72,7 @@
                         android:layout_marginTop="@dimen/padding_button"
                         android:autofillHints="emailAddress"
                         android:digits="@string/textName"
+                        android:hint="@string/username"
                         android:inputType="text" />
 
                     <TextView
@@ -89,6 +90,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_button"
                         android:autofillHints="emailAddress"
+                        android:backgroundTint="@color/white"
+                        android:hint="@string/userpass"
                         android:inputType="textPassword" />
 
                     <com.google.android.material.button.MaterialButton
@@ -98,6 +101,15 @@
                         android:layout_marginTop="@dimen/padding_button"
                         android:gravity="center"
                         android:text="@string/continuar" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/login_registerbtn"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_button"
+                        android:gravity="center"
+                        android:text="@string/register_user" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </androidx.constraintlayout.widget.ConstraintLayout>

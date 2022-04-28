@@ -7,15 +7,19 @@ import android.os.SystemClock;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.sv.proye.tecaapp.views.ui.usuarios.LoginActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MainAsync mainAsync = new MainAsync();
+        mainAsync.execute();
     }
 
-    private class mainAsync extends AsyncTask<String, String, String> {
+    private class MainAsync extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... strings) {
@@ -25,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         }
     }

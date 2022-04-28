@@ -2,6 +2,7 @@ package com.sv.proye.tecaapp.views.ui.usuarios;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -12,6 +13,9 @@ import com.sv.proye.tecaapp.R;
 import com.sv.proye.tecaapp.dto.UsuarioDao;
 import com.sv.proye.tecaapp.models.Usuario;
 import com.sv.proye.tecaapp.utils.DateUtils;
+import com.sv.proye.tecaapp.utils.MessageUtils;
+
+import java.util.Date;
 
 public class RegistrarseActivity extends AppCompatActivity {
 
@@ -43,8 +47,15 @@ public class RegistrarseActivity extends AppCompatActivity {
         inputFechaNacimiento.setMaxDate(maxDate);
         usuarioDao = new UsuarioDao(RegistrarseActivity.this);
 
-         // getLayoutInflater()
-         getWindow().getDecorView().getRootView();
+        // getLayoutInflater()
+        // getWindow().getDecorView().getRootView();
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                guardarUsuario();
+            }
+        });
     }
 
     private Boolean validarDatos() {
@@ -84,12 +95,20 @@ public class RegistrarseActivity extends AppCompatActivity {
     private Usuario recolectarDatos() {
         Usuario usuario = new Usuario();
         usuario.setNombre(inputNombre.getText().toString());
+        usuario.setApellido(inputApellido.getText().toString());
+        usuario.setFechaNacimiento(new Date(inputFechaNacimiento.getCalendarView().getDate()));
+        usuario.setTelefono(inputTelefono.getText().toString());
+        usuario.setEmail(inputEmail.getText().toString());
+        usuario.setUserName(inputUsername.getText().toString());
+        usuario.setUserPass(inputUserpass.getText().toString());
+        System.out.println(usuario);
         return usuario;
     }
 
     private void guardarUsuario() {
         if (validarDatos()) {
             usuarioDao.almacenarModelo(recolectarDatos());
+            MessageUtils.displaySuccess("Usuario Registrado", RegistrarseActivity.this);
         }
     }
 

@@ -18,6 +18,9 @@ public class AutoresFragment extends Fragment {
     private AutoresViewModel mViewModel;
     private Autor autorSelected;
 
+    public AutoresFragment() {
+    }
+
     public AutoresFragment(Autor autorSelected) {
         this.autorSelected = autorSelected;
     }

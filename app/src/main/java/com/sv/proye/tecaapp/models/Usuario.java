@@ -90,4 +90,19 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Usuario{");
+        sb.append("idUsuario=").append(idUsuario);
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append(", apellido='").append(apellido).append('\'');
+        sb.append(", userName='").append(userName).append('\'');
+        sb.append(", userPass='").append(userPass).append('\'');
+        sb.append(", fechaNacimiento=").append(fechaNacimiento);
+        sb.append(", telefono='").append(telefono).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

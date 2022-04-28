@@ -6,6 +6,36 @@
     app:startDestination="@+id/nav_home">
 
     <fragment
+        android:id="@+id/nav_autores"
+        android:name="com.sv.proye.tecaapp.views.ui.autores.AutoresFragment"
+        android:label="@string/menu_autores"
+        tools:layout="@layout/autores_fragment" />
+
+    <fragment
+        android:id="@+id/nav_coleccion"
+        android:name="com.sv.proye.tecaapp.views.ui.colecciones.ColeccionFragment"
+        android:label="@string/menu_coleccion"
+        tools:layout="@layout/coleccion_fragment" />
+
+    <fragment
+        android:id="@+id/nav_libros"
+        android:name="com.sv.proye.tecaapp.views.ui.libros.LibrosFragment"
+        android:label="@string/menu_libros"
+        tools:layout="@layout/libros_fragment" />
+
+    <fragment
+        android:id="@+id/nav_deseados"
+        android:name="com.sv.proye.tecaapp.views.ui.libros.LibroDeseadoFragment"
+        android:label="@string/menu_deseados"
+        tools:layout="@layout/libro_deseado_fragment" />
+
+    <fragment
+        android:id="@+id/nav_coleccionlibro"
+        android:name="com.sv.proye.tecaapp.views.ui.colecciones.ColeccionLibroFragment"
+        android:label="@string/menu_coleccionlibro"
+        tools:layout="@layout/coleccion_libro_fragment" />
+
+    <fragment
         android:id="@+id/nav_home"
         android:name="com.sv.proye.tecaapp.views.ui.home.HomeFragment"
         android:label="@string/menu_home"
@@ -17,9 +47,4 @@
         android:label="@string/menu_usuarios"
         tools:layout="@layout/usuarios_fragment" />
 
-    <fragment
-        android:id="@+id/nav_autores"
-        android:name="com.sv.proye.tecaapp.views.ui.autores.AutoresFragment"
-        android:label="@string/menu_autores"
-        tools:layout="@layout/autores_fragment" />
 </navigation>

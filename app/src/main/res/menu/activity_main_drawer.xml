@@ -8,6 +8,28 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
             android:title="@string/menu_home" />
+
+        <item
+            android:id="@+id/nav_coleccion"
+            android:icon="@drawable/ic_collections"
+            android:title="@string/menu_coleccion" />
+
+        <item
+            android:id="@+id/nav_libros"
+            android:icon="@drawable/ic_book"
+            android:title="@string/menu_libros" />
+
+        <item
+            android:id="@+id/nav_deseados"
+            android:icon="@drawable/ic_collections"
+            android:title="@string/menu_deseados" />
+
+        <item
+            android:id="@+id/nav_coleccionlibro"
+            android:icon="@drawable/ic_home"
+            android:title="@string/menu_coleccionlibro" />
+
+
         <item
             android:id="@+id/nav_usuarios"
             android:icon="@drawable/ic_autor"
