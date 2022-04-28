@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toast_success_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".views.ui.usuarios.LoginActivity">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="@dimen/medium_image_margin"
+        android:layout_height="@dimen/medium_image_margin"
+        android:layout_marginTop="@dimen/padding_small"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/asd"
+        android:scaleType="centerCrop"
+        android:src="@drawable/book_tree"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView1"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_small"
+        android:background="@color/lime_200"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/padding_button"
+        android:paddingVertical="@dimen/padding_small"
+        android:text="@string/success"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image" />
+
+    <TextView
+        android:id="@+id/text"
+        style="@style/TextAppearance.Material3.TitleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_small"
+        android:layout_marginBottom="@dimen/padding_small"
+        android:background="@color/black"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/padding_button"
+        android:paddingVertical="@dimen/padding_small"
+        android:text="@string/asd"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
