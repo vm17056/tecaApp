@@ -107,6 +107,8 @@
                         android:id="@+id/register_fechanacimiento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:datePickerMode="spinner"
+                        android:calendarViewShown="false"
                         android:layout_marginTop="@dimen/padding_button" />
 
                     <TextView
@@ -185,6 +187,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_button"
+                        style="@style/ThemeOverlay.Material3.MaterialCalendar"
                         android:gravity="center"
                         android:text="@string/save" />
                 </LinearLayout>

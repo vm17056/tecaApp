@@ -15,7 +15,7 @@ import java.util.List;
 
 public abstract class DatabaseHandler<Modelo> extends SQLiteOpenHelper {
     private static final Integer DB_VERSION = 1;
-    private static final String DB_NAME = "BIBLIOTECAR";
+    private static final String DB_NAME = "BIBLIOTECAR.db";
     protected static final String DATE_FORMAT = DateUtils.FORMAT_YYYY_MM_DD;
 
     public DatabaseHandler(@Nullable Context context) {
@@ -79,7 +79,7 @@ public abstract class DatabaseHandler<Modelo> extends SQLiteOpenHelper {
         return dDLQuery.toString();
     }
 
-    private String[] prepareKeysSelection() {
+    protected String[] prepareKeysSelection() {
         StringBuilder dDLQuery = new StringBuilder("");
         int i = 0;
         List<String> keysAndId = new ArrayList<>();
@@ -87,7 +87,7 @@ public abstract class DatabaseHandler<Modelo> extends SQLiteOpenHelper {
         for (KeysMatch key : getKeysNoId()) {
             keysAndId.add(key.getKeyName());
         }
-        return (String[]) keysAndId.toArray();
+        return keysAndId.toArray(new String[0]);
     }
 
     /**
