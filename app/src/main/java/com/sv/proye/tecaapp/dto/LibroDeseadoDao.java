@@ -81,8 +81,8 @@ public class LibroDeseadoDao extends DatabaseHandler<LibroDeseado> implements Da
 
 
     @Override
-    public void almacenarModelo(LibroDeseado entity) {
-        save(getKeysNoIdValues(entity));
+    public Long almacenarModelo(LibroDeseado entity) {
+        return save(getKeysNoIdValues(entity));
     }
 
     @Override
@@ -91,8 +91,8 @@ public class LibroDeseadoDao extends DatabaseHandler<LibroDeseado> implements Da
     }
 
     @Override
-    public void eliminarModelo(Integer id) {
-        delete(id);
+    public int eliminarModelo(Integer id) {
+        return delete(id);
     }
 
     @Override

@@ -1,8 +1,14 @@
 package com.sv.proye.tecaapp.models;
 
+//@Entity
 public class Coleccion {
+
+    //    @PrimaryKey
+//    @ColumnInfo(name = "IDCOLECCION")
     private Integer idColeccion;
+    //    @ColumnInfo(name = "CODIGO",typeAffinity = ColumnInfo.TEXT)
     private String codigo;
+    //    @ColumnInfo(name = "NOMBRE",typeAffinity = ColumnInfo.TEXT)
     private String nombre;
 
     public Coleccion() {
@@ -36,5 +42,15 @@ public class Coleccion {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Coleccion{");
+        sb.append("idColeccion=").append(idColeccion);
+        sb.append(", codigo='").append(codigo).append('\'');
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

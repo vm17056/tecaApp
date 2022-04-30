@@ -72,7 +72,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_button"
                         android:autofillHints="name"
-                        android:digits="@string/textName"
+                        android:digits="@string/text_name"
+                        android:hint="@string/name"
                         android:inputType="text"
                         android:maxLength="100" />
 
@@ -91,7 +92,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_button"
                         android:autofillHints="name"
-                        android:digits="@string/textName"
+                        android:digits="@string/text_name"
+                        android:hint="@string/last_name"
                         android:inputType="text" />
 
                     <TextView
@@ -107,9 +109,9 @@
                         android:id="@+id/register_fechanacimiento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:datePickerMode="spinner"
+                        android:layout_marginTop="@dimen/padding_button"
                         android:calendarViewShown="false"
-                        android:layout_marginTop="@dimen/padding_button" />
+                        android:datePickerMode="spinner" />
 
                     <TextView
                         style="@style/TextAppearance.MaterialComponents.Subtitle1"
@@ -127,6 +129,7 @@
                         android:layout_marginTop="@dimen/padding_button"
                         android:autofillHints="phone"
                         android:digits="@string/numbers"
+                        android:hint="@string/phone_number"
                         android:inputType="text" />
 
                     <TextView
@@ -144,7 +147,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_button"
                         android:autofillHints="emailAddress"
-                        android:digits="@string/textEmail"
+                        android:digits="@string/text_email"
+                        android:hint="@string/email"
                         android:inputType="textEmailAddress" />
 
                     <TextView
@@ -162,7 +166,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_button"
                         android:autofillHints="emailAddress"
-                        android:digits="@string/textName"
+                        android:digits="@string/text_name"
                         android:inputType="text" />
 
                     <TextView
@@ -184,11 +188,12 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/register_savebtn"
+                        style="@style/ThemeOverlay.Material3.MaterialCalendar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_button"
-                        style="@style/ThemeOverlay.Material3.MaterialCalendar"
                         android:gravity="center"
+                        android:hint="@string/userpass"
                         android:text="@string/save" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

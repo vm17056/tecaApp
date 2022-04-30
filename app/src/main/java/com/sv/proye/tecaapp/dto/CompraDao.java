@@ -77,7 +77,7 @@ public class CompraDao extends DatabaseHandler<Compra> implements DataObjectServ
     protected List<KeysMatch> getKeysNoIdValues(Compra model) {
         List<KeysMatch> keys = new ArrayList<>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
-        keys.add(new KeysMatch("INVENTARIO", 1, true, model.getInventario().getCantidad(), null, null));
+        keys.add(new KeysMatch("INVENTARIO", 1, true, model.getInventario().getIdInventario(), null, null));
         keys.add(new KeysMatch("CANTIDAD", 1, true, model.getCantidad(), null, null));
         keys.add(new KeysMatch("FECHACOMPRA", 2, true, null, null, simpleDateFormat.format(model.getFechaCompra())));
         keys.add(new KeysMatch("PRECIOUNITARIO", 3, true, null, model.getPrecioUnitario(), null));
@@ -87,8 +87,8 @@ public class CompraDao extends DatabaseHandler<Compra> implements DataObjectServ
 
 
     @Override
-    public void almacenarModelo(Compra entity) {
-        save(getKeysNoIdValues(entity));
+    public Long almacenarModelo(Compra entity) {
+        return save(getKeysNoIdValues(entity));
     }
 
     @Override
@@ -97,8 +97,8 @@ public class CompraDao extends DatabaseHandler<Compra> implements DataObjectServ
     }
 
     @Override
-    public void eliminarModelo(Integer id) {
-        delete(id);
+    public int eliminarModelo(Integer id) {
+        return delete(id);
     }
 
     @Override

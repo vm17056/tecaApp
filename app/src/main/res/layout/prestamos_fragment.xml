@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.ui.inventario.PrestamosFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="@dimen/medium_image_margin"
+                android:layout_height="@dimen/medium_image_margin"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/asd"
+                android:scaleType="centerCrop"
+                android:src="@drawable/book_tree"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:background="@color/black"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/padding_button"
+                android:paddingVertical="@dimen/padding_small"
+                android:text="@string/register_prestamo"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView1" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/medium_image_margin"
+                android:layout_marginVertical="@dimen/padding_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:labelFor="@id/prestamo_inventario"
+                        android:text="@string/inventory" />
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/prestamo_inventario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_button" />
+
+                    <TextView
+                        style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:labelFor="@id/prestamo_usuario"
+                        android:text="@string/username" />
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/prestamo_usuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_button"
+                        android:spinnerMode="dropdown" />
+
+                    <TextView
+                        style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_button"
+                        android:gravity="center"
+                        android:labelFor="@id/prestamo_cantidad"
+                        android:text="@string/amount" />
+
+                    <NumberPicker
+                        android:id="@+id/prestamo_cantidad"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_button"
+                        android:autofillHints="name"
+                        android:showDividers="beginning"
+
+                        android:hint="@string/amount"
+                        android:inputType="number" />
+
+                    <TextView
+                        style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_button"
+                        android:gravity="center"
+                        android:labelFor="@id/prestamo_fechaprestamo"
+                        android:text="@string/borrow_date" />
+
+                    <DatePicker
+                        android:id="@+id/prestamo_fechaprestamo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_button"
+                        android:calendarViewShown="false"
+                        android:datePickerMode="spinner" />
+
+                    <TextView
+                        style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_button"
+                        android:gravity="center"
+                        android:labelFor="@id/prestamo_fechaentrega"
+                        android:text="@string/delivery_date" />
+
+                    <DatePicker
+                        android:id="@+id/prestamo_fechaentrega"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_button"
+                        android:calendarViewShown="false"
+                        android:datePickerMode="spinner" />
+
+                    <TextView
+                        style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_button"
+                        android:gravity="center"
+                        android:labelFor="@id/prestamo_entregado"
+                        android:text="@string/delivered" />
+
+                    <ToggleButton
+                        android:id="@+id/prestamo_entregado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textOff="@string/not"
+                        android:textOn="@string/yes" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/prestamo_savebtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_button"
+                        android:gravity="center"
+                        android:text="@string/save" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

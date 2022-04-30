@@ -3,10 +3,16 @@ package com.sv.proye.tecaapp.models;
 import java.util.Date;
 
 public class Libro {
+    //    @PrimaryKey
+//    @ColumnInfo(name = "IDLIBRO")
     private Integer idLibro;
+    //    @ColumnInfo(name = "AUTOR")
     private Autor autor;
+    //    @ColumnInfo(name = "CODIGO", typeAffinity = ColumnInfo.TEXT)
     private String codigo;
+    //    @ColumnInfo(name = "NOMBRE", typeAffinity = ColumnInfo.TEXT)
     private String nombre;
+    //    @ColumnInfo(name = "FECHAPUBLICACION", typeAffinity = ColumnInfo.TEXT)
     private Date fechaPublicacion;
 
     public Libro() {
@@ -58,5 +64,17 @@ public class Libro {
 
     public void setFechaPublicacion(Date fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Libro{");
+        sb.append("idLibro=").append(idLibro);
+        sb.append(", autor=").append(autor);
+        sb.append(", codigo='").append(codigo).append('\'');
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append(", fechaPublicacion=").append(fechaPublicacion);
+        sb.append('}');
+        return sb.toString();
     }
 }

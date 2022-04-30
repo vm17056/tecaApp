@@ -75,14 +75,14 @@ public class ColeccionLibroDao extends DatabaseHandler<ColeccionLibro> implement
         List<KeysMatch> keys = new ArrayList<>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
         keys.add(new KeysMatch("LIBRO", 1, true, model.getLibro().getIdLibro(), null, null));
-        keys.add(new KeysMatch("COLECCION", 1, true, model.getIdColeccion().intValue(), null, null));
+        keys.add(new KeysMatch("COLECCION", 1, true, model.getColeccion().getIdColeccion(), null, null));
         return keys;
     }
 
 
     @Override
-    public void almacenarModelo(ColeccionLibro entity) {
-        save(getKeysNoIdValues(entity));
+    public Long almacenarModelo(ColeccionLibro entity) {
+        return save(getKeysNoIdValues(entity));
     }
 
     @Override
@@ -91,8 +91,8 @@ public class ColeccionLibroDao extends DatabaseHandler<ColeccionLibro> implement
     }
 
     @Override
-    public void eliminarModelo(Integer id) {
-        delete(id);
+    public int eliminarModelo(Integer id) {
+        return delete(id);
     }
 
     @Override

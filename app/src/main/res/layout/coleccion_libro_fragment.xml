@@ -71,6 +71,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_button" />
 
+                    <com.google.android.material.divider.MaterialDivider
+                        style="@style/Widget.MaterialComponents.MaterialDivider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:dividerColor="@color/design_default_color_secondary" />
+
                     <TextView
                         style="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:layout_width="match_parent"
@@ -85,6 +91,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_button" />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        style="@style/Widget.MaterialComponents.MaterialDivider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:dividerColor="@color/design_default_color_secondary" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/coleccionlibro_savebtn"

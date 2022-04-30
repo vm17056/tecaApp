@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
@@ -14,6 +15,7 @@ import com.sv.proye.tecaapp.R;
 import com.sv.proye.tecaapp.dto.UsuarioDao;
 import com.sv.proye.tecaapp.models.Usuario;
 import com.sv.proye.tecaapp.utils.MessageUtils;
+import com.sv.proye.tecaapp.utils.StaticUtils;
 import com.sv.proye.tecaapp.views.MenuInicioActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -29,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         usuarioDao = new UsuarioDao(this);
+        StaticUtils.usuario = null;
         inputUsuario = findViewById(R.id.login_username);
         inputPassword = findViewById(R.id.login_userpass);
 
@@ -51,6 +54,16 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void onBack() {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                // Handle the back button event
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     private Boolean validarDatos() {
@@ -86,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
         usuario.setUserPass(inputPassword.getText().toString());
         usuario = usuarioDao.validarUsuario(usuario);
         if (usuario != null) {
+            StaticUtils.usuario = usuario;
             MessageUtils.displaySuccess("Bienvenido", LoginActivity.this);
             Intent intent = new Intent(LoginActivity.this, MenuInicioActivity.class);
             startActivity(intent);

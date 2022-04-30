@@ -81,8 +81,8 @@ public class HistorialLeidoDao extends DatabaseHandler<HistorialLeido> implement
 
 
     @Override
-    public void almacenarModelo(HistorialLeido entity) {
-        save(getKeysNoIdValues(entity));
+    public Long almacenarModelo(HistorialLeido entity) {
+        return save(getKeysNoIdValues(entity));
     }
 
     @Override
@@ -91,8 +91,8 @@ public class HistorialLeidoDao extends DatabaseHandler<HistorialLeido> implement
     }
 
     @Override
-    public void eliminarModelo(Integer id) {
-        delete(id);
+    public int eliminarModelo(Integer id) {
+        return delete(id);
     }
 
     @Override

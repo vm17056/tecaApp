@@ -84,8 +84,8 @@ public class LibroDao extends DatabaseHandler<Libro> implements DataObjectServic
 
 
     @Override
-    public void almacenarModelo(Libro entity) {
-        save(getKeysNoIdValues(entity));
+    public Long almacenarModelo(Libro entity) {
+        return save(getKeysNoIdValues(entity));
     }
 
     @Override
@@ -94,8 +94,8 @@ public class LibroDao extends DatabaseHandler<Libro> implements DataObjectServic
     }
 
     @Override
-    public void eliminarModelo(Integer id) {
-        delete(id);
+    public int eliminarModelo(Integer id) {
+        return delete(id);
     }
 
     @Override

@@ -81,8 +81,8 @@ public class FavoritoDao extends DatabaseHandler<Favorito> implements DataObject
 
 
     @Override
-    public void almacenarModelo(Favorito entity) {
-        save(getKeysNoIdValues(entity));
+    public Long almacenarModelo(Favorito entity) {
+        return save(getKeysNoIdValues(entity));
     }
 
     @Override
@@ -91,8 +91,8 @@ public class FavoritoDao extends DatabaseHandler<Favorito> implements DataObject
     }
 
     @Override
-    public void eliminarModelo(Integer id) {
-        delete(id);
+    public int eliminarModelo(Integer id) {
+        return delete(id);
     }
 
     @Override

@@ -9,6 +9,8 @@
     <color name="lime_700">#27B301</color>
     <color name="red_200">#FF0303</color>
     <color name="red_700">#9E0202</color>
+    <color name="orange_200">#FFC107</color>
+    <color name="orange_700">#C69709</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

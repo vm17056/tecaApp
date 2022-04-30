@@ -75,8 +75,8 @@ public class ColeccionDao extends DatabaseHandler<Coleccion> implements DataObje
 
 
     @Override
-    public void almacenarModelo(Coleccion entity) {
-        save(getKeysNoIdValues(entity));
+    public Long almacenarModelo(Coleccion entity) {
+        return save(getKeysNoIdValues(entity));
     }
 
     @Override
@@ -85,8 +85,8 @@ public class ColeccionDao extends DatabaseHandler<Coleccion> implements DataObje
     }
 
     @Override
-    public void eliminarModelo(Integer id) {
-        delete(id);
+    public int eliminarModelo(Integer id) {
+        return delete(id);
     }
 
     @Override

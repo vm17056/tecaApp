@@ -19,17 +19,17 @@ import java.util.Date;
 
 public class RegistrarseActivity extends AppCompatActivity {
 
-    EditText inputNombre;
-    EditText inputApellido;
-    DatePicker inputFechaNacimiento;
-    EditText inputTelefono;
-    EditText inputEmail;
-    EditText inputUsername;
-    EditText inputUserpass;
-    MaterialButton btnSave;
-    Long minDate = DateUtils.getDateFromStringFormat("1910-01-01", DateUtils.FORMAT_YYYY_MM_DD).getTime();
-    Long maxDate = DateUtils.getActualDate().getTime();
-    UsuarioDao usuarioDao;
+    private EditText inputNombre;
+    private EditText inputApellido;
+    private DatePicker inputFechaNacimiento;
+    private EditText inputTelefono;
+    private EditText inputEmail;
+    private EditText inputUsername;
+    private EditText inputUserpass;
+    private MaterialButton btnSave;
+    private Long minDate = DateUtils.getDateFromStringFormat("1910-01-01", DateUtils.FORMAT_YYYY_MM_DD).getTime();
+    private Long maxDate = DateUtils.getActualDate().getTime();
+    private UsuarioDao usuarioDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,7 @@ public class RegistrarseActivity extends AppCompatActivity {
             valid = false;
         }
         if (inputFechaNacimiento.getCalendarView().getDate() == DateUtils.getActualDate().getTime()) {
-            inputNombre.setHintTextColor(Color.RED);
+            inputFechaNacimiento.setBackgroundColor(Color.RED);
             valid = false;
         }
         if (inputTelefono.getText().toString().isEmpty()) {
@@ -107,8 +107,13 @@ public class RegistrarseActivity extends AppCompatActivity {
 
     private void guardarUsuario() {
         if (validarDatos()) {
-            usuarioDao.almacenarModelo(recolectarDatos());
-            MessageUtils.displaySuccess("Usuario Registrado", RegistrarseActivity.this);
+            Long registrado = usuarioDao.almacenarModelo(recolectarDatos());
+            if (registrado == -1)
+                MessageUtils.displayFail(getResources().getString(R.string.database_error), RegistrarseActivity.this);
+            else
+                MessageUtils.displaySuccess("Usuario Registrado", RegistrarseActivity.this);
+        } else {
+            MessageUtils.displayWarming(getResources().getString(R.string.validation_invalid), RegistrarseActivity.this);
         }
     }
 

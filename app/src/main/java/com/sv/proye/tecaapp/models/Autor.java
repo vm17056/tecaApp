@@ -3,11 +3,19 @@ package com.sv.proye.tecaapp.models;
 import java.util.Date;
 
 public class Autor {
+
+    //    @PrimaryKey
+//    @ColumnInfo(name = "IDAUTOR")
     private Integer idAutor;
+    //    @ColumnInfo(name = "NOMBRE", typeAffinity = ColumnInfo.TEXT)
     private String nombre;
+    //    @ColumnInfo(name = "APELLIDO", typeAffinity = ColumnInfo.TEXT)
     private String apellido;
+    //    @ColumnInfo(name = "NOMBRE", typeAffinity = ColumnInfo.TEXT)
     private Date fechaNacimiento;
+    //    @ColumnInfo(name = "NOMBRE", typeAffinity = ColumnInfo.TEXT)
     private Boolean fallecido;
+    //    @ColumnInfo(name = "NOMBRE", typeAffinity = ColumnInfo.TEXT)
     private Date fechaDefuncion;
 
     public Autor() {
@@ -69,4 +77,5 @@ public class Autor {
     public void setFechaDefuncion(Date fechaDefuncion) {
         this.fechaDefuncion = fechaDefuncion;
     }
+
 }

@@ -71,7 +71,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_button"
                         android:autofillHints="name"
-                        android:digits="@string/textName"
+                        android:digits="@string/text_name"
                         android:inputType="text"
                         android:maxLength="100" />
 
@@ -90,7 +90,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_button"
                         android:autofillHints="name"
-                        android:digits="@string/textName"
+                        android:digits="@string/text_name"
                         android:inputType="text" />
 
                     <TextView
@@ -106,6 +106,8 @@
                         android:id="@+id/autor_fechanacimiento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:datePickerMode="spinner"
+                        android:calendarViewShown="false"
                         android:layout_marginTop="@dimen/padding_button" />
 
                     <TextView
@@ -137,6 +139,8 @@
                         android:id="@+id/autor_fechadefuncion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:datePickerMode="spinner"
+                        android:calendarViewShown="false"
                         android:layout_marginTop="@dimen/padding_button" />
 
                     <com.google.android.material.button.MaterialButton

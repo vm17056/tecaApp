@@ -1,5 +1,6 @@
 package com.sv.proye.tecaapp.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -13,6 +14,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.sv.proye.tecaapp.R;
 import com.sv.proye.tecaapp.databinding.ActivityMenuInicioBinding;
+import com.sv.proye.tecaapp.utils.StaticUtils;
+import com.sv.proye.tecaapp.views.ui.usuarios.LoginActivity;
 
 public class MenuInicioActivity extends AppCompatActivity {
 
@@ -34,13 +37,20 @@ public class MenuInicioActivity extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_usuarios, R.id.nav_autores,
                 R.id.nav_coleccion, R.id.nav_libros, R.id.nav_deseados,
-                R.id.nav_coleccionlibro
+                R.id.nav_coleccionlibro, R.id.nav_inventarios, R.id.nav_compras,
+                R.id.nav_prestamos
         )
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_menu_inicio);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        //validar usuario
+        if (StaticUtils.usuario == null){
+            Intent intent = new Intent(MenuInicioActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
     @Override

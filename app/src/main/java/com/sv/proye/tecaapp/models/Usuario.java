@@ -4,13 +4,22 @@ import java.util.Date;
 
 public class Usuario {
 
+    //    @PrimaryKey
+//    @ColumnInfo(name = "IDUSUARIO")
     private Integer idUsuario;
+    //    @ColumnInfo(name = "NOMBRE", typeAffinity = ColumnInfo.TEXT)
     private String nombre;
+    //    @ColumnInfo(name = "APELLIDO", typeAffinity = ColumnInfo.TEXT)
     private String apellido;
+    //    @ColumnInfo(name = "USERNAME", typeAffinity = ColumnInfo.TEXT)
     private String userName;
+    //    @ColumnInfo(name = "USERPASS", typeAffinity = ColumnInfo.TEXT)
     private String userPass;
+    //    @ColumnInfo(name = "FECHANACIMIENTO", typeAffinity = ColumnInfo.TEXT)
     private Date fechaNacimiento;
+    //    @ColumnInfo(name = "TELEFONO", typeAffinity = ColumnInfo.TEXT)
     private String telefono;
+    //    @ColumnInfo(name = "EMAIL", typeAffinity = ColumnInfo.TEXT)
     private String email;
 
     public Usuario() {

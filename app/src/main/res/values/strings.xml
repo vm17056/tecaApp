@@ -4,14 +4,17 @@
     <string name="title_activity_menu_inicio">MenuInicioActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Marlon Vasquez</string>
+    <string name="nav_header_subtitle">VM17056@ues.edu.sv</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Inicio</string>
     <string name="menu_usuarios">Usuarios</string>
     <string name="menu_autores">Autores</string>
+    <string name="menu_inventario">Inventario</string>
+    <string name="menu_compra">Compras</string>
+    <string name="menu_prestamo">Prestamos</string>
     <string name="menu_libros">Libros</string>
     <string name="menu_deseados">Libros Deseados</string>
     <string name="menu_coleccion">Colecciones</string>
@@ -25,6 +28,9 @@
     <string name="register_user">Registrar Usuario</string>
     <string name="register_autor">Registrar Autor</string>
     <string name="register_libro">Registrar Libro</string>
+    <string name="register_inventory">Registrar Inventario</string>
+    <string name="register_compra">Registrar Compra</string>
+    <string name="register_prestamo">Registrar Prestamo</string>
     <string name="register_librodeseado">Registrar Libro Deseado</string>
     <string name="register_coleccion">Registrar Coleccion</string>
     <string name="register_coleccion_book">Registrar Coleccion de Libro</string>
@@ -34,19 +40,30 @@
     <string name="not">NO</string>
 
     <!--Mesagge Types-->
-    <string name="success">Exito!</string>
+    <string name="success">¡Exito!</string>
     <string name="error">Errorcillo</string>
+    <string name="warm">Advertencia</string>
+
+    <string name="validation_invalid">Parece que no todos los datos son validos, revisalos antes de continuar</string>
+    <string name="database_error">Parece que no tenemos problemas con la base de datos</string>
+    <string name="database_update_error">Parece que no tenemos problemas para actualizar</string>
 
     <!--    usuario-->
     <string name="name">Nombre</string>
     <string name="autor">Autor</string>
     <string name="book">Libro</string>
+    <string name="inventory">Inventario</string>
     <string name="coleccion">Coleccion</string>
     <string name="code">Codigo</string>
+    <string name="amount">Cantidad</string>
     <string name="last_name">Apellido</string>
     <string name="born_date">Fecha de Nacimiento</string>
     <string name="defeat_date">Fecha de Defuncion</string>
     <string name="publish_date">Fecha de Publicacion</string>
+    <string name="borrow_date">Fecha de Prestamo</string>
+    <string name="bought_date">Fecha de Compra</string>
+    <string name="update_date">Fecha de Actualizacion</string>
+    <string name="delivery_date">Fecha de Entrega</string>
     <string name="phone_number">Telefono</string>
     <string name="email">Correo</string>
     <string name="username">Usuario</string>
@@ -54,11 +71,16 @@
     <string name="defeated_ask">Fallecido?</string>
     <string name="save">Guardar</string>
     <string name="continuar">Continuar</string>
+    <string name="unit_price">Precio Unitario</string>
+    <string name="bought_code">Codigo de Compra</string>
+    <string name="delivered">Entregado</string>
 
 
     <!-- digit validators-->
-    <string name="textName">abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ </string>
-    <string name="textEmail">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@._</string>
+    <string name="text_name">abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ</string>
+    <string name="text_and_numbers">abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890</string>
+    <string name="text_numbers_sim">abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890-_</string>
+    <string name="text_email">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@._1234567890</string>
     <string name="numbers">1234567890</string>
     <string name="numeric">1234567890.,</string>
     <string name="title_activity_prueba_draweb">pruebaDrawebActivity</string>

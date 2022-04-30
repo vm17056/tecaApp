@@ -38,5 +38,20 @@
             android:id="@+id/nav_autores"
             android:icon="@drawable/ic_autor"
             android:title="@string/menu_autores" />
+
+        <item
+            android:id="@+id/nav_inventarios"
+            android:icon="@drawable/ic_inventario"
+            android:title="@string/menu_inventario" />
+
+        <item
+            android:id="@+id/nav_compras"
+            android:icon="@drawable/ic_buy"
+            android:title="@string/menu_compra" />
+
+        <item
+            android:id="@+id/nav_prestamos"
+            android:icon="@drawable/ic_autor"
+            android:title="@string/menu_prestamo" />
     </group>
 </menu>

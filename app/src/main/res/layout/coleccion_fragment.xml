@@ -73,7 +73,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_button"
                         android:autofillHints="name"
-                        android:digits="@string/textName"
+                        android:digits="@string/text_numbers_sim"
                         android:inputType="text"
                         android:maxLength="100" />
 
@@ -92,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_button"
                         android:autofillHints="name"
-                        android:digits="@string/textName"
+                        android:digits="@string/text_name"
                         android:inputType="text"
                         android:maxLength="100" />
 

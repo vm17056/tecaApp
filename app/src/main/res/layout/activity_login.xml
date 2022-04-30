@@ -71,7 +71,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_button"
                         android:autofillHints="emailAddress"
-                        android:digits="@string/textName"
+                        android:digits="@string/text_name"
                         android:hint="@string/username"
                         android:inputType="text" />
 

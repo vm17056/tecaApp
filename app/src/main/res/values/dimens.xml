@@ -8,6 +8,7 @@
     <dimen name="medium_image_margin">48dp</dimen>
     <dimen name="small_image_margin">86dp</dimen>
     <dimen name="padding_button">12dp</dimen>
+    <dimen name="padding_medium">8dp</dimen>
     <dimen name="padding_small">4dp</dimen>
 
 </resources>

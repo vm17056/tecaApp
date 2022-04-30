@@ -81,8 +81,8 @@ public class InventarioDao extends DatabaseHandler<Inventario> implements DataOb
 
 
     @Override
-    public void almacenarModelo(Inventario entity) {
-        save(getKeysNoIdValues(entity));
+    public Long almacenarModelo(Inventario entity) {
+        return save(getKeysNoIdValues(entity));
     }
 
     @Override
@@ -91,8 +91,8 @@ public class InventarioDao extends DatabaseHandler<Inventario> implements DataOb
     }
 
     @Override
-    public void eliminarModelo(Integer id) {
-        delete(id);
+    public int eliminarModelo(Integer id) {
+        return delete(id);
     }
 
     @Override

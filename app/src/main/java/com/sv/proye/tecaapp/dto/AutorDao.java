@@ -83,8 +83,8 @@ public class AutorDao extends DatabaseHandler<Autor> implements DataObjectServic
 
 
     @Override
-    public void almacenarModelo(Autor entity) {
-        save(getKeysNoIdValues(entity));
+    public Long almacenarModelo(Autor entity) {
+        return save(getKeysNoIdValues(entity));
     }
 
     @Override
@@ -93,8 +93,8 @@ public class AutorDao extends DatabaseHandler<Autor> implements DataObjectServic
     }
 
     @Override
-    public void eliminarModelo(Integer id) {
-        delete(id);
+    public int eliminarModelo(Integer id) {
+        return delete(id);
     }
 
     @Override

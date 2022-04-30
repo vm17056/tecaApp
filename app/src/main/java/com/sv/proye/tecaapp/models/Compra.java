@@ -69,4 +69,17 @@ public class Compra {
     public void setCodigoCompra(String codigoCompra) {
         this.codigoCompra = codigoCompra;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Compra{");
+        sb.append("idCompra=").append(idCompra);
+        sb.append(", inventario=").append(inventario);
+        sb.append(", cantidad=").append(cantidad);
+        sb.append(", fechaCompra=").append(fechaCompra);
+        sb.append(", precioUnitario=").append(precioUnitario);
+        sb.append(", codigoCompra='").append(codigoCompra).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

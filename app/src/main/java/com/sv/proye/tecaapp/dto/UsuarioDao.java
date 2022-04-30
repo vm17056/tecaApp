@@ -90,8 +90,8 @@ public class UsuarioDao extends DatabaseHandler<Usuario> implements DataObjectSe
 
 
     @Override
-    public void almacenarModelo(Usuario usuario) {
-        save(getKeysNoIdValues(usuario));
+    public Long almacenarModelo(Usuario usuario) {
+        return save(getKeysNoIdValues(usuario));
     }
 
     @Override
@@ -100,8 +100,8 @@ public class UsuarioDao extends DatabaseHandler<Usuario> implements DataObjectSe
     }
 
     @Override
-    public void eliminarModelo(Integer id) {
-        delete(id);
+    public int eliminarModelo(Integer id) {
+        return delete(id);
     }
 
     @Override

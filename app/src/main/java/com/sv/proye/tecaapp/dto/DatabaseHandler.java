@@ -49,9 +49,23 @@ public abstract class DatabaseHandler<Modelo> extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + getTableName() + "("
+        String CREATE_TABLE = "CREATE TABLE " + getTableName() + "("
                 + getIdKey() + " INTEGER PRIMARY KEY," + prepareKeysTableDDL(getKeysNoId()) + ")";
-        db.execSQL(CREATE_CONTACTS_TABLE);
+        db.execSQL(CREATE_TABLE);
+    }
+
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        verifyTable(db);
+    }
+
+    private void verifyTable(SQLiteDatabase db) {
+        String verifyOpened = "Verify for " + getTableName() + " has ben opened.";
+        System.out.println(verifyOpened);
+        String CREATE_TABLE_IF_NOT_EXIST = "CREATE TABLE IF NOT EXISTS " + getTableName() + "("
+                + getIdKey() + " INTEGER PRIMARY KEY," + prepareKeysTableDDL(getKeysNoId()) + ")";
+        db.execSQL(CREATE_TABLE_IF_NOT_EXIST);
     }
 
     @Override
@@ -94,8 +108,9 @@ public abstract class DatabaseHandler<Modelo> extends SQLiteOpenHelper {
      * agregar un nuevo registro a la tabla de la base de datos
      *
      * @param model is List<KeysMatch>
+     * @return number row ID or -1 if error
      */
-    protected void save(List<KeysMatch> model) {
+    protected Long save(List<KeysMatch> model) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         for (KeysMatch key : model) {
@@ -112,10 +127,15 @@ public abstract class DatabaseHandler<Modelo> extends SQLiteOpenHelper {
             }
         }
         // guardando Row
-        db.insert(getTableName(), null, values);
+        Long saved = db.insert(getTableName(), null, values);
         db.close();
+
+        return saved;
     }
 
+    /**
+     * @return number of rows affected
+     */
     protected int update(List<KeysMatch> model, Integer idValue) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -139,11 +159,15 @@ public abstract class DatabaseHandler<Modelo> extends SQLiteOpenHelper {
         return updated;
     }
 
-    protected void delete(Integer idValue) {
+    /**
+     * @return number of rows affected
+     */
+    protected int delete(Integer idValue) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(getTableName(), getIdKey() + " = ?",
+        Integer rowsAffected = db.delete(getTableName(), getIdKey() + " = ?",
                 new String[]{idValue.toString()});
         db.close();
+        return rowsAffected;
     }
 
     protected Modelo getSingleModelById(Integer id) {

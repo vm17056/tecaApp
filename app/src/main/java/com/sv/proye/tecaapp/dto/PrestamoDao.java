@@ -82,7 +82,7 @@ public class PrestamoDao extends DatabaseHandler<Prestamo> implements DataObject
     protected List<KeysMatch> getKeysNoIdValues(Prestamo model) {
         List<KeysMatch> keys = new ArrayList<>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
-        keys.add(new KeysMatch("INVENTARIO", 1, true, model.getInventario().getCantidad(), null, null));
+        keys.add(new KeysMatch("INVENTARIO", 1, true, model.getInventario().getIdInventario(), null, null));
         keys.add(new KeysMatch("USUARIO", 1, true, model.getUsuario().getIdUsuario(), null, null));
         keys.add(new KeysMatch("CANTIDAD", 1, true, model.getCantidad(), null, null));
         keys.add(new KeysMatch("fechaPrestamo", 2, true, null, null, simpleDateFormat.format(model.getFechaPrestamo())));
@@ -93,8 +93,8 @@ public class PrestamoDao extends DatabaseHandler<Prestamo> implements DataObject
 
 
     @Override
-    public void almacenarModelo(Prestamo entity) {
-        save(getKeysNoIdValues(entity));
+    public Long almacenarModelo(Prestamo entity) {
+        return save(getKeysNoIdValues(entity));
     }
 
     @Override
@@ -103,8 +103,8 @@ public class PrestamoDao extends DatabaseHandler<Prestamo> implements DataObject
     }
 
     @Override
-    public void eliminarModelo(Integer id) {
-        delete(id);
+    public int eliminarModelo(Integer id) {
+        return delete(id);
     }
 
     @Override

@@ -47,4 +47,22 @@
         android:label="@string/menu_usuarios"
         tools:layout="@layout/usuarios_fragment" />
 
+    <fragment
+        android:id="@+id/nav_inventarios"
+        android:name="com.sv.proye.tecaapp.views.ui.inventario.InventarioFragment"
+        android:label="@string/menu_inventario"
+        tools:layout="@layout/inventario_fragment" />
+
+    <fragment
+        android:id="@+id/nav_compras"
+        android:name="com.sv.proye.tecaapp.views.ui.inventario.ComprasFragment"
+        android:label="@string/menu_compra"
+        tools:layout="@layout/compras_fragment" />
+
+    <fragment
+        android:id="@+id/nav_prestamos"
+        android:name="com.sv.proye.tecaapp.views.ui.inventario.PrestamosFragment"
+        android:label="@string/menu_prestamo"
+        tools:layout="@layout/prestamos_fragment" />
+
 </navigation>
