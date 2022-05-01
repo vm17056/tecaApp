@@ -29,13 +29,17 @@ import java.util.List;
 public class ColeccionLibroFragment extends Fragment {
 
     private ColeccionLibroViewModel mViewModel;
+    private ColeccionLibro coleccionSelected;
     private AppCompatSpinner spinnerLibro;
     private AppCompatSpinner spinnerColeccion;
     private MaterialButton btnSave;
     private ColeccionLibroDao coleccionLibroDao;
 
-    public static ColeccionLibroFragment newInstance() {
-        return new ColeccionLibroFragment();
+    public ColeccionLibroFragment() {
+    }
+
+    public ColeccionLibroFragment(ColeccionLibro coleccionSelected) {
+        this.coleccionSelected = coleccionSelected;
     }
 
     @Override
@@ -75,6 +79,11 @@ public class ColeccionLibroFragment extends Fragment {
         List<Libro> autores = autorDao.listarModelos();
         LibrosSpinnerAdapter librosSpinnerAdapter = new LibrosSpinnerAdapter(autores, ColeccionLibroFragment.this.requireActivity());
         spinnerLibro.setAdapter(librosSpinnerAdapter);
+        if (coleccionSelected != null) {
+            int pos = autores.indexOf(coleccionSelected.getLibro());
+            spinnerLibro.setSelection(pos);
+        }
+        ;
     }
 
     private void cargarColecciones() {
@@ -82,6 +91,10 @@ public class ColeccionLibroFragment extends Fragment {
         List<Coleccion> autores = autorDao.listarModelos();
         ColeccionSpinnerAdapter coleccionesSpinnerAdapter = new ColeccionSpinnerAdapter(autores, ColeccionLibroFragment.this.requireActivity());
         spinnerColeccion.setAdapter(coleccionesSpinnerAdapter);
+        if (coleccionSelected != null) {
+            int pos = autores.indexOf(coleccionSelected.getColeccion());
+            spinnerColeccion.setSelection(pos);
+        }
     }
 
     private Boolean validarDatos() {
@@ -103,6 +116,7 @@ public class ColeccionLibroFragment extends Fragment {
 
     private ColeccionLibro recolectarDatos() {
         ColeccionLibro libro = new ColeccionLibro();
+        if (coleccionSelected != null) libro = coleccionSelected;
         libro.setLibro(LibrosSpinnerAdapter.libroSeleccionado);
         libro.setColeccion(ColeccionSpinnerAdapter.coleccionSeleccionada);
         return libro;

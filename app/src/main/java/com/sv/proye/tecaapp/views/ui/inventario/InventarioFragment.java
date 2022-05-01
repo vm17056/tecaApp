@@ -30,6 +30,7 @@ import java.util.List;
 public class InventarioFragment extends Fragment {
 
     private InventarioViewModel mViewModel;
+    private Inventario inventarioSelected;
     private AppCompatSpinner spinnerLibros;
     private NumberPicker inputCantidad;
     private DatePicker inputFechaActualizado;
@@ -37,8 +38,11 @@ public class InventarioFragment extends Fragment {
     private Long maxDate = DateUtils.getActualDate().getTime();
     private InventarioDao inventarioDao;
 
-    public static InventarioFragment newInstance() {
-        return new InventarioFragment();
+    public InventarioFragment() {
+    }
+
+    public InventarioFragment(Inventario inventarioSelected) {
+        this.inventarioSelected = inventarioSelected;
     }
 
     @Override
@@ -61,7 +65,15 @@ public class InventarioFragment extends Fragment {
                 guardarInventario();
             }
         });
+        cargarDatos(inventarioSelected);
         return view;
+    }
+
+    private void cargarDatos(Inventario o) {
+        if (o != null) {
+            inputCantidad.setValue(o.getCantidad());
+            inputFechaActualizado.getCalendarView().setDate(o.getFechaActualizado().getTime());
+        }
     }
 
     private void cargarLibros() {
@@ -69,6 +81,11 @@ public class InventarioFragment extends Fragment {
         List<Libro> libros = libroDao.listarModelos();
         LibrosSpinnerAdapter spinnerAdapter = new LibrosSpinnerAdapter(libros, InventarioFragment.this.requireActivity());
         spinnerLibros.setAdapter(spinnerAdapter);
+        if (inventarioSelected != null) {
+            int pos = libros.indexOf(inventarioSelected.getLibro());
+            spinnerLibros.setSelection(pos);
+        }
+        ;
     }
 
     private void guardarInventario() {
@@ -100,6 +117,7 @@ public class InventarioFragment extends Fragment {
 
     private Inventario recolectarDatos() {
         Inventario inventario = new Inventario();
+        if (inventarioSelected != null) inventario = inventarioSelected;
         inventario.setLibro(LibrosSpinnerAdapter.libroSeleccionado);
         inventario.setCantidad(inputCantidad.getValue());
         inventario.setFechaActualizado(new Date(inputFechaActualizado.getCalendarView().getDate()));

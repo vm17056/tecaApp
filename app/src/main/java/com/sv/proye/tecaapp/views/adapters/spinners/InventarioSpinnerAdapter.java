@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import com.sv.proye.tecaapp.R;
 import com.sv.proye.tecaapp.models.Inventario;
 import com.sv.proye.tecaapp.views.adapters.AbsSpinnerAdapter;
-import com.sv.proye.tecaapp.views.adapters.TextOnlyHolder;
+import com.sv.proye.tecaapp.views.adapters.holders.TextOnlyHolder;
 
 import java.util.List;
 
@@ -48,7 +48,7 @@ public class InventarioSpinnerAdapter extends AbsSpinnerAdapter<Inventario> {
 
             String nombreInventario = inventario.getLibro().getNombre() + " " + inventario.getCantidad();
             holder.textView.setText(nombreInventario);
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+            holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     InventarioSpinnerAdapter.inventarioSeleccionado = inventario;

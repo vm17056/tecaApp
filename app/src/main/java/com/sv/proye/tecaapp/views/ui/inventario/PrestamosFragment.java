@@ -36,6 +36,7 @@ import java.util.List;
 public class PrestamosFragment extends Fragment {
 
     private PrestamosViewModel mViewModel;
+    private Prestamo prestamoSeleced;
     private AppCompatSpinner spinnerInventario;
     private AppCompatSpinner spinnerUsuario;
     private NumberPicker inputCantidad;
@@ -46,8 +47,11 @@ public class PrestamosFragment extends Fragment {
     private Long maxDate = DateUtils.getActualDate().getTime();
     PrestamoDao prestamoDao;
 
-    public static PrestamosFragment newInstance() {
-        return new PrestamosFragment();
+    public PrestamosFragment() {
+    }
+
+    public PrestamosFragment(Prestamo prestamoSeleced) {
+        this.prestamoSeleced = prestamoSeleced;
     }
 
     @Override
@@ -76,7 +80,17 @@ public class PrestamosFragment extends Fragment {
                 guardarPrestamo();
             }
         });
+        cargarDatos(prestamoSeleced);
         return view;
+    }
+
+    private void cargarDatos(Prestamo o) {
+        if (o != null) {
+            inputCantidad.setValue(o.getCantidad());
+            inputFechaPrestamo.getCalendarView().setDate(o.getFechaPrestamo().getTime());
+            inputFechaEntrega.getCalendarView().setDate(o.getFechaEntrega().getTime());
+            inputEntregado.setText(o.getDevuelto() ? getResources().getString(R.string.yes) : getResources().getString(R.string.not));
+        }
     }
 
     private void guardarPrestamo() {
@@ -104,6 +118,11 @@ public class PrestamosFragment extends Fragment {
         ;
         InventarioSpinnerAdapter spinnerAdapter = new InventarioSpinnerAdapter(inventarioAviable, PrestamosFragment.this.requireActivity());
         spinnerInventario.setAdapter(spinnerAdapter);
+        if (prestamoSeleced != null) {
+            int pos = inventarios.indexOf(prestamoSeleced.getInventario());
+            spinnerInventario.setSelection(pos);
+        }
+        ;
         spinnerInventario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -116,6 +135,7 @@ public class PrestamosFragment extends Fragment {
 
             }
         });
+
     }
 
     private void cargarUsuarios() {
@@ -123,6 +143,11 @@ public class PrestamosFragment extends Fragment {
         List<Usuario> usuarios = usuarioDao.listarModelos();
         UsuarioSpinnerAdapter spinnerAdapter = new UsuarioSpinnerAdapter(usuarios, PrestamosFragment.this.requireActivity());
         spinnerUsuario.setAdapter(spinnerAdapter);
+        if (prestamoSeleced != null) {
+            int pos = usuarios.indexOf(prestamoSeleced.getUsuario());
+            spinnerUsuario.setSelection(pos);
+        }
+        ;
     }
 
     private Boolean validarDatos() {
@@ -152,6 +177,7 @@ public class PrestamosFragment extends Fragment {
 
     private Prestamo recolectarDatos() {
         Prestamo compra = new Prestamo();
+        if (prestamoSeleced != null) compra = prestamoSeleced;
         compra.setInventario(InventarioSpinnerAdapter.inventarioSeleccionado);
         compra.setUsuario(UsuarioSpinnerAdapter.usuarioSeleccionado);
         compra.setCantidad(inputCantidad.getValue());

@@ -29,21 +29,24 @@ import java.util.Date;
 import java.util.List;
 
 public class LibrosFragment extends Fragment {
-    private LibrosViewModel mViewModel;
 
-    AppCompatSpinner spinnerAutores;
-    EditText inputCodigo;
-    EditText inputNombre;
-    DatePicker inputFechaPublicacion;
-    MaterialButton btnSave;
+    private LibrosViewModel mViewModel;
+    private LibroDeseadoFragmentBinding binding;
+    private AppCompatSpinner spinnerAutores;
+    private Libro libroSelected;
+    private EditText inputCodigo;
+    private EditText inputNombre;
+    private DatePicker inputFechaPublicacion;
+    private MaterialButton btnSave;
+    private LibroDao libroDao;
     private Long maxDate = DateUtils.getActualDate().getTime();
 
-    public static LibrosFragment newInstance() {
-        return new LibrosFragment();
+    public LibrosFragment() {
     }
 
-    private LibroDao libroDao;
-    LibroDeseadoFragmentBinding binding;
+    public LibrosFragment(Libro libroSelected) {
+        this.libroSelected = libroSelected;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -64,8 +67,16 @@ public class LibrosFragment extends Fragment {
                 guardarLibro();
             }
         });
-
+        cargarDatos(libroSelected);
         return view;
+    }
+
+    private void cargarDatos(Libro o) {
+        if (o != null) {
+            inputCodigo.setText(o.getCodigo());
+            inputNombre.setText(o.getNombre());
+            inputFechaPublicacion.getCalendarView().setDate(o.getFechaPublicacion().getTime());
+        }
     }
 
     private void guardarLibro() {
@@ -85,6 +96,11 @@ public class LibrosFragment extends Fragment {
         List<Autor> autores = autorDao.listarModelos();
         AutoresSpinnerAdapter autoresSpinnerAdapter = new AutoresSpinnerAdapter(autores, LibrosFragment.this.requireActivity());
         spinnerAutores.setAdapter(autoresSpinnerAdapter);
+        if (libroSelected != null) {
+            int pos = autores.indexOf(libroSelected.getAutor());
+            spinnerAutores.setSelection(pos);
+        }
+        ;
     }
 
     private Boolean validarDatos() {
@@ -108,6 +124,7 @@ public class LibrosFragment extends Fragment {
 
     private Libro recolectarDatos() {
         Libro libro = new Libro();
+        if (libroSelected != null) libro = libroSelected;
         libro.setAutor(AutoresSpinnerAdapter.autorSeleccionado);
         libro.setCodigo(inputCodigo.getText().toString());
         libro.setNombre(inputNombre.getText().toString());

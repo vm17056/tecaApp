@@ -23,13 +23,17 @@ import com.sv.proye.tecaapp.utils.StaticUtils;
 public class LibroDeseadoFragment extends Fragment {
 
     private LibroDeseadoViewModel mViewModel;
+    private LibroDeseado libroDeseadoSelected;
     private EditText inputCodigo;
     private EditText inputNombre;
     private MaterialButton btnSave;
     private LibroDeseadoDao libroDeseadoDao;
 
-    public static LibroDeseadoFragment newInstance() {
-        return new LibroDeseadoFragment();
+    public LibroDeseadoFragment() {
+    }
+
+    public LibroDeseadoFragment(LibroDeseado libroDeseadoSelected) {
+        this.libroDeseadoSelected = libroDeseadoSelected;
     }
 
     @Override
@@ -47,7 +51,15 @@ public class LibroDeseadoFragment extends Fragment {
                 guardarLibro();
             }
         });
+        cargarDatos(libroDeseadoSelected);
         return view;
+    }
+
+    private void cargarDatos(LibroDeseado o) {
+        if (o != null) {
+            inputCodigo.setText(o.getCodigo());
+            inputNombre.setText(o.getNombre());
+        }
     }
 
     private void guardarLibro() {
@@ -82,9 +94,11 @@ public class LibroDeseadoFragment extends Fragment {
 
     private LibroDeseado recolectarDatos() {
         LibroDeseado libro = new LibroDeseado();
+        if (libroDeseadoSelected != null) libro = libroDeseadoSelected;
         libro.setCodigo(inputCodigo.getText().toString());
         libro.setNombre(inputNombre.getText().toString());
         libro.setUsuario(StaticUtils.usuario);
+        if (libroDeseadoSelected != null) libro.setUsuario(libroDeseadoSelected.getUsuario());
         return libro;
     }
 }

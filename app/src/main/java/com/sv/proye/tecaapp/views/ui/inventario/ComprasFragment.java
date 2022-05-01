@@ -31,6 +31,7 @@ import java.util.List;
 public class ComprasFragment extends Fragment {
 
     private ComprasViewModel mViewModel;
+    private Compra compraSelected;
     private AppCompatSpinner spinnerInventario;
     private NumberPicker inputCantidad;
     private DatePicker inputFechaCompra;
@@ -41,8 +42,11 @@ public class ComprasFragment extends Fragment {
     private CompraDao compraDao;
     private InventarioDao inventarioDao;
 
-    public static ComprasFragment newInstance() {
-        return new ComprasFragment();
+    public ComprasFragment() {
+    }
+
+    public ComprasFragment(Compra compraSelected) {
+        this.compraSelected = compraSelected;
     }
 
     @Override
@@ -69,7 +73,17 @@ public class ComprasFragment extends Fragment {
                 guardarCompra();
             }
         });
+        cargarDatos(compraSelected);
         return view;
+    }
+
+    private void cargarDatos(Compra o) {
+        if (o != null) {
+            inputCantidad.setValue(o.getCantidad());
+            inputFechaCompra.getCalendarView().setDate(o.getFechaCompra().getTime());
+            inputPrecio.setText(String.valueOf(o.getPrecioUnitario()));
+            inputCodigo.setText(o.getCodigoCompra());
+        }
     }
 
     private void guardarCompra() {
@@ -98,10 +112,14 @@ public class ComprasFragment extends Fragment {
     }
 
     private void cargarInventarios() {
-
         List<Inventario> inventarios = inventarioDao.listarModelos();
         InventarioSpinnerAdapter spinnerAdapter = new InventarioSpinnerAdapter(inventarios, ComprasFragment.this.requireActivity());
         spinnerInventario.setAdapter(spinnerAdapter);
+        if (compraSelected != null) {
+            int pos = inventarios.indexOf(compraSelected.getInventario());
+            spinnerInventario.setSelection(pos);
+        }
+        ;
     }
 
     private Boolean validarDatos() {
@@ -129,6 +147,7 @@ public class ComprasFragment extends Fragment {
 
     private Compra recolectarDatos() {
         Compra compra = new Compra();
+        if (compraSelected != null) compra = compraSelected;
         compra.setInventario(InventarioSpinnerAdapter.inventarioSeleccionado);
         compra.setCantidad(inputCantidad.getValue());
         compra.setFechaCompra(new Date(inputFechaCompra.getCalendarView().getDate()));

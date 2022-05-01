@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class DatabaseHandler<Modelo> extends SQLiteOpenHelper {
-    private static final Integer DB_VERSION = 1;
+    private static final Integer DB_VERSION = 2;
     private static final String DB_NAME = "BIBLIOTECAR.db";
     protected static final String DATE_FORMAT = DateUtils.FORMAT_YYYY_MM_DD;
 

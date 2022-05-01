@@ -70,6 +70,7 @@
     <string name="userpass">Contraseña</string>
     <string name="defeated_ask">Fallecido?</string>
     <string name="save">Guardar</string>
+    <string name="edit">Editar</string>
     <string name="continuar">Continuar</string>
     <string name="unit_price">Precio Unitario</string>
     <string name="bought_code">Codigo de Compra</string>

@@ -21,13 +21,17 @@ import com.sv.proye.tecaapp.utils.MessageUtils;
 public class ColeccionFragment extends Fragment {
 
     private ColeccionViewModel mViewModel;
+    private Coleccion coleccionSelected;
     private TextView inputCodigo;
     private TextView inputNombre;
     private MaterialButton btnSave;
     private ColeccionDao coleccionDao;
 
-    public static ColeccionFragment newInstance() {
-        return new ColeccionFragment();
+    public ColeccionFragment() {
+    }
+
+    public ColeccionFragment(Coleccion coleccionSelected) {
+        this.coleccionSelected = coleccionSelected;
     }
 
     @Override
@@ -45,7 +49,15 @@ public class ColeccionFragment extends Fragment {
                 guardarColeccio();
             }
         });
+        colocarDatos(coleccionSelected);
         return view;
+    }
+
+    private void colocarDatos(Coleccion o) {
+        if (o != null) {
+            inputCodigo.setText(o.getCodigo());
+            inputNombre.setText(o.getNombre());
+        }
     }
 
     private Boolean validarDatos() {
@@ -63,6 +75,7 @@ public class ColeccionFragment extends Fragment {
 
     private Coleccion recolectarDatos() {
         Coleccion coleccion = new Coleccion();
+        if (coleccionSelected != null) coleccion = coleccionSelected;
         coleccion.setNombre(inputNombre.getText().toString());
         coleccion.setCodigo(inputCodigo.getText().toString());
         return coleccion;

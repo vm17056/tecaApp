@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textview.MaterialTextView;
 import com.sv.proye.tecaapp.R;
+import com.sv.proye.tecaapp.views.adapters.holders.TextOnlyHolder;
 
 import java.util.List;
 

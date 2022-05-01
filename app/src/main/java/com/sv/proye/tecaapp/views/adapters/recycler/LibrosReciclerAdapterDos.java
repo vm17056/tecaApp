@@ -1,10 +1,11 @@
-package com.sv.proye.tecaapp.views.adapters;
+package com.sv.proye.tecaapp.views.adapters.recycler;
 
 import android.content.Context;
 
 import androidx.fragment.app.FragmentActivity;
 
 import com.sv.proye.tecaapp.models.Libro;
+import com.sv.proye.tecaapp.views.adapters.AbsTextOnlyReciclerAdapter;
 
 import java.util.List;
 

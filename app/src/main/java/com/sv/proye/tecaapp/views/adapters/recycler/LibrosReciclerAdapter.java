@@ -1,4 +1,4 @@
-package com.sv.proye.tecaapp.views.adapters;
+package com.sv.proye.tecaapp.views.adapters.recycler;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sv.proye.tecaapp.R;
 import com.sv.proye.tecaapp.models.Libro;
+import com.sv.proye.tecaapp.views.adapters.holders.TextOnlyHolder;
 
 import java.util.List;
 

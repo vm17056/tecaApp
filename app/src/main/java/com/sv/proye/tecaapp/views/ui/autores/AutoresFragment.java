@@ -31,7 +31,7 @@ public class AutoresFragment extends Fragment {
     private EditText inputApellido;
     private DatePicker inputFechaNacimiento;
     private ToggleButton inputFallecido;
-    private DatePicker inputDefuncion;
+    private DatePicker inputFechaDefuncion;
     private MaterialButton btnGuardar;
     private Long maxDate = DateUtils.getActualDate().getTime();
     private AutorDao autorDao;
@@ -43,11 +43,6 @@ public class AutoresFragment extends Fragment {
         this.autorSelected = autorSelected;
     }
 
-    public static AutoresFragment newInstance(Autor autorSelected) {
-        return new AutoresFragment(autorSelected);
-    }
-
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -58,19 +53,28 @@ public class AutoresFragment extends Fragment {
         inputApellido = view.findViewById(R.id.autor_lastname);
         inputFechaNacimiento = view.findViewById(R.id.autor_fechanacimiento);
         inputFallecido = view.findViewById(R.id.autor_fallecido);
-        inputDefuncion = view.findViewById(R.id.autor_fechadefuncion);
+        inputFechaDefuncion = view.findViewById(R.id.autor_fechadefuncion);
         btnGuardar = view.findViewById(R.id.autor_savebtn);
-
         inputFechaNacimiento.setMaxDate(maxDate);
-        inputDefuncion.setMaxDate(maxDate);
-
+        inputFechaDefuncion.setMaxDate(maxDate);
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 guardarAutor();
             }
         });
+        colocarDatos(autorSelected);
         return view;
+    }
+
+    private void colocarDatos(Autor autor) {
+        if (autor != null) {
+            inputNombre.setText(autor.getNombre());
+            inputApellido.setText(autor.getApellido());
+            inputFechaNacimiento.getCalendarView().setDate(autor.getFechaNacimiento().getTime());
+            inputFechaDefuncion.getCalendarView().setDate(autor.getFechaDefuncion().getTime());
+            inputFallecido.setText(autor.getFallecido() ? getResources().getString(R.string.yes) : getResources().getString(R.string.not));
+        }
     }
 
     private Boolean validarDatos() {
@@ -93,17 +97,17 @@ public class AutoresFragment extends Fragment {
         }
         if (!inputFallecido.getText().toString().isEmpty()
                 && getResources().getString(R.string.yes).equalsIgnoreCase(inputFallecido.getText().toString())
-                && inputFechaNacimiento.getCalendarView().getDate() >= inputDefuncion.getCalendarView().getDate()) {
+                && inputFechaNacimiento.getCalendarView().getDate() >= inputFechaDefuncion.getCalendarView().getDate()) {
             inputFechaNacimiento.setBackgroundColor(Color.YELLOW);
-            inputDefuncion.setBackgroundColor(Color.YELLOW);
+            inputFechaDefuncion.setBackgroundColor(Color.YELLOW);
             valid = false;
         } else {
-            inputDefuncion.setBackgroundColor(Color.TRANSPARENT);
+            inputFechaDefuncion.setBackgroundColor(Color.TRANSPARENT);
         }
         if (!inputFallecido.getText().toString().isEmpty()
                 && getResources().getString(R.string.yes).equalsIgnoreCase(inputFallecido.getText().toString())
-                && inputDefuncion.getCalendarView().getDate() == DateUtils.getActualDate().getTime()) {
-            inputDefuncion.setBackgroundColor(Color.RED);
+                && inputFechaDefuncion.getCalendarView().getDate() == DateUtils.getActualDate().getTime()) {
+            inputFechaDefuncion.setBackgroundColor(Color.RED);
             valid = false;
         }
         return valid;
@@ -111,12 +115,13 @@ public class AutoresFragment extends Fragment {
 
     private Autor recolectarDatos() {
         Autor autor = new Autor();
+        if (autorSelected != null) autor = autorSelected;
         autor.setNombre(inputNombre.getText().toString());
         autor.setApellido(inputApellido.getText().toString());
         autor.setFechaNacimiento(new Date(inputFechaNacimiento.getCalendarView().getDate()));
         autor.setFallecido(getResources().getString(R.string.yes).equalsIgnoreCase(inputFallecido.getText().toString()));
         if (autor.getFallecido()) {
-            autor.setFechaDefuncion(new Date(inputDefuncion.getCalendarView().getDate()));
+            autor.setFechaDefuncion(new Date(inputFechaDefuncion.getCalendarView().getDate()));
         } else {
             autor.setFechaDefuncion(new Date());
         }
