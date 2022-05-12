@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.sv.proye.tecaapp.models.ColeccionLibro;
 import com.sv.proye.tecaapp.utils.FragmentUtils;
@@ -16,12 +17,12 @@ public class ColeccionLibroEditableRecyclerAdapter extends AbsTextBtnEditRecicle
 
 //    private LayoutInflater layoutInflater;
 //    private Context context;
-    private FragmentActivity fragmentActivity;
+    private FragmentManager fragmentActivity;
 
-    public ColeccionLibroEditableRecyclerAdapter(List<ColeccionLibro> lista, Context context, FragmentActivity fragmentActivity) {
+    public ColeccionLibroEditableRecyclerAdapter(List<ColeccionLibro> lista, Context context, FragmentManager fragmentActivity) {
         super(lista, context, fragmentActivity);
 //        this.context = context;
-//        this.fragmentActivity = fragmentActivity;
+        this.fragmentActivity = fragmentActivity;
     }
 
     @Override

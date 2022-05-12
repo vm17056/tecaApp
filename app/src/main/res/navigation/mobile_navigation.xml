@@ -65,4 +65,10 @@
         android:label="@string/menu_prestamo"
         tools:layout="@layout/prestamos_fragment" />
 
+    <fragment
+        android:id="@+id/nav_lista_libros"
+        android:name="com.sv.proye.tecaapp.views.ui.libros.ListarLibrosFragment"
+        android:label="@string/list_libros"
+        tools:layout="@layout/listar_libros_fragment" />
+
 </navigation>

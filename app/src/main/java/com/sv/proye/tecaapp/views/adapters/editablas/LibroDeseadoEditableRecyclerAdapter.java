@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.sv.proye.tecaapp.models.LibroDeseado;
 import com.sv.proye.tecaapp.utils.FragmentUtils;
@@ -16,12 +17,12 @@ public class LibroDeseadoEditableRecyclerAdapter extends AbsTextBtnEditReciclerA
 
     //    private LayoutInflater layoutInflater;
 //    private Context context;
-    private FragmentActivity fragmentActivity;
+    private FragmentManager fragmentActivity;
 
-    public LibroDeseadoEditableRecyclerAdapter(List<LibroDeseado> lista, Context context, FragmentActivity fragmentActivity) {
+    public LibroDeseadoEditableRecyclerAdapter(List<LibroDeseado> lista, Context context, FragmentManager fragmentActivity) {
         super(lista, context, fragmentActivity);
 //        this.context = context;
-//        this.fragmentActivity = fragmentActivity;
+        this.fragmentActivity = fragmentActivity;
     }
 
     @Override

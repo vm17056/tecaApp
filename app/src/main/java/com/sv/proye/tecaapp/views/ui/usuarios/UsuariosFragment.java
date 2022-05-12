@@ -41,7 +41,7 @@ public class UsuariosFragment extends Fragment {
     private void cargarUsuarios() {
         UsuarioDao usuarioDao = new UsuarioDao(UsuariosFragment.this.requireActivity());
         List<Usuario> usuarios = usuarioDao.listarModelos();
-        UsuariosEditableRecyclerAdapter adapter = new UsuariosEditableRecyclerAdapter(usuarios, UsuariosFragment.this.requireActivity(), UsuariosFragment.this.requireActivity());
+        UsuariosEditableRecyclerAdapter adapter = new UsuariosEditableRecyclerAdapter(usuarios, UsuariosFragment.this.requireActivity(), getParentFragmentManager());
         recyclerUsuarios.setLayoutManager(new LinearLayoutManager(UsuariosFragment.this.requireActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerUsuarios.setAdapter(adapter);
     }

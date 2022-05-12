@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.sv.proye.tecaapp.models.Usuario;
 import com.sv.proye.tecaapp.utils.DateUtils;
@@ -16,9 +17,9 @@ public class UsuariosEditableRecyclerAdapter extends AbsTextBtnEditReciclerAdapt
 
     //    private LayoutInflater layoutInflater;
 //    private Context context;
-    private FragmentActivity fragmentActivity;
+    private FragmentManager fragmentActivity;
 
-    public UsuariosEditableRecyclerAdapter(List<Usuario> lista, Context context, FragmentActivity fragmentActivity) {
+    public UsuariosEditableRecyclerAdapter(List<Usuario> lista, Context context, FragmentManager fragmentActivity) {
         super(lista, context, fragmentActivity);
 //        this.context = context;
 //        this.fragmentActivity = fragmentActivity;

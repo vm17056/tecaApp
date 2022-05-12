@@ -2,10 +2,12 @@ package com.sv.proye.tecaapp.dto;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
 
 import com.sv.proye.tecaapp.models.Favorito;
+import com.sv.proye.tecaapp.models.HistorialLeido;
 import com.sv.proye.tecaapp.models.Libro;
 import com.sv.proye.tecaapp.models.Usuario;
 
@@ -103,5 +105,18 @@ public class FavoritoDao extends DatabaseHandler<Favorito> implements DataObject
     @Override
     public Favorito buscarModeloPodId(Integer id) {
         return getSingleModelById(id);
+    }
+
+    public Favorito buscarPorUsuarioAndLibro(Integer idUsuario, Integer idLibro) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(getTableName(), prepareKeysSelection(), " USUARIO = ? AND LIBRO = ? ",
+                new String[]{String.valueOf(idUsuario), String.valueOf(idLibro)}, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Favorito model = parseCursorToModel(cursor);
+        db.close();
+        // return the generic model
+        return model;
     }
 }

@@ -3,7 +3,7 @@ package com.sv.proye.tecaapp.views.adapters.editablas;
 import android.content.Context;
 import android.view.View;
 
-import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.sv.proye.tecaapp.models.Autor;
 import com.sv.proye.tecaapp.utils.FragmentUtils;
@@ -14,14 +14,14 @@ import java.util.List;
 
 public class AutoresEditableRecyclerAdapter extends AbsTextBtnEditReciclerAdapter<Autor> {
 
-//    private LayoutInflater layoutInflater;
+    //    private LayoutInflater layoutInflater;
 //    private Context context;
-    private FragmentActivity fragmentActivity;
+    private FragmentManager fragmentManager;
 
-    public AutoresEditableRecyclerAdapter(List<Autor> lista, Context context, FragmentActivity fragmentActivity) {
-        super(lista, context, fragmentActivity);
+    public AutoresEditableRecyclerAdapter(List<Autor> lista, Context context, FragmentManager fragmentManager) {
+        super(lista, context, fragmentManager);
 //        this.context = context;
-//        this.fragmentActivity = fragmentActivity;
+        this.fragmentManager = fragmentManager;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class AutoresEditableRecyclerAdapter extends AbsTextBtnEditReciclerAdapte
             viewHolder.editBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    FragmentUtils.showFragmentGlobal(fragmentActivity, new AutoresFragment(data));
+                    FragmentUtils.showFragmentGlobal(fragmentManager, new AutoresFragment(data));
                 }
             });
         }

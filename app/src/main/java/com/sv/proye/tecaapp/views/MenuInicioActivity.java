@@ -3,7 +3,9 @@ package com.sv.proye.tecaapp.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -38,7 +40,7 @@ public class MenuInicioActivity extends AppCompatActivity {
                 R.id.nav_home, R.id.nav_usuarios, R.id.nav_autores,
                 R.id.nav_coleccion, R.id.nav_libros, R.id.nav_deseados,
                 R.id.nav_coleccionlibro, R.id.nav_inventarios, R.id.nav_compras,
-                R.id.nav_prestamos
+                R.id.nav_prestamos,R.id.nav_lista_libros
         )
                 .setOpenableLayout(drawer)
                 .build();
@@ -47,7 +49,7 @@ public class MenuInicioActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         //validar usuario
-        if (StaticUtils.usuario == null){
+        if (StaticUtils.usuario == null) {
             Intent intent = new Intent(MenuInicioActivity.this, LoginActivity.class);
             startActivity(intent);
         }
@@ -65,5 +67,16 @@ public class MenuInicioActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_menu_inicio);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

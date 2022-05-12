@@ -1,7 +1,9 @@
 package com.sv.proye.tecaapp.dto;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
 
@@ -109,5 +111,16 @@ public class CompraDao extends DatabaseHandler<Compra> implements DataObjectServ
     @Override
     public Compra buscarModeloPodId(Integer id) {
         return getSingleModelById(id);
+    }
+
+    public void actualizarCompras() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("INVENTARIO", 1);
+        // updating row
+        int updated = db.update(getTableName(), values, null,
+                null);
+        db.close();
+        System.out.println("****************** Actualizados * " + updated);
     }
 }

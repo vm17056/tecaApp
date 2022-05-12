@@ -2,6 +2,7 @@ package com.sv.proye.tecaapp.dto;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
 
@@ -103,5 +104,18 @@ public class HistorialLeidoDao extends DatabaseHandler<HistorialLeido> implement
     @Override
     public HistorialLeido buscarModeloPodId(Integer id) {
         return getSingleModelById(id);
+    }
+
+    public HistorialLeido buscarPorUsuarioAndLibro(Integer idUsuario, Integer idLibro) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(getTableName(), prepareKeysSelection(), " USUARIO = ? AND LIBRO = ? ",
+                new String[]{String.valueOf(idUsuario), String.valueOf(idLibro)}, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        HistorialLeido model = parseCursorToModel(cursor);
+        db.close();
+        // return the generic model
+        return model;
     }
 }

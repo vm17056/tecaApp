@@ -1,5 +1,6 @@
 package com.sv.proye.tecaapp.views.ui.home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sv.proye.tecaapp.R;
@@ -46,6 +49,7 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private AppCompatSpinner spinner;
     private RecyclerView recyclerView;
+    private View globalRoot;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -57,6 +61,7 @@ public class HomeFragment extends Fragment {
         //homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         spinner = root.findViewById(R.id.inicio_spinner);
         recyclerView = root.findViewById(R.id.inicio_recicler);
+        globalRoot = root;
         cargarSpinner();
         return root;
     }
@@ -80,14 +85,18 @@ public class HomeFragment extends Fragment {
         List<LibroDeseado> libroDeseadoList = libroDeseadoDao.listarModelos();
         List<Prestamo> autorList1 = prestamoDao.listarModelos();
 
-        AutoresEditableRecyclerAdapter autoresEditableRecyclerAdapter = new AutoresEditableRecyclerAdapter(autorList, HomeFragment.this.requireContext(), getActivity());
-        ColeccionEditableRecyclerAdapter coleccionEditableRecyclerAdapter = new ColeccionEditableRecyclerAdapter(coleccionList, HomeFragment.this.requireActivity(), getActivity());
-        ColeccionLibroEditableRecyclerAdapter coleccionLibroEditableRecyclerAdapter = new ColeccionLibroEditableRecyclerAdapter(coleccionLibroList, HomeFragment.this.requireActivity(), getActivity());
-        ComprasEditableRecyclerAdapter comprasEditableRecyclerAdapter = new ComprasEditableRecyclerAdapter(compraList, HomeFragment.this.requireActivity(), getActivity());
-        InventariosEditableRecyclerAdapter inventariosEditableRecyclerAdapter = new InventariosEditableRecyclerAdapter(inventarioList, HomeFragment.this.requireActivity(), getActivity());
-        LibroDeseadoEditableRecyclerAdapter libroDeseadoEditableRecyclerAdapter = new LibroDeseadoEditableRecyclerAdapter(libroDeseadoList, HomeFragment.this.requireActivity(), getActivity());
-        LibrosEditableRecyclerAdapter librosEditableRecyclerAdapter = new LibrosEditableRecyclerAdapter(libroList, HomeFragment.this.requireActivity(), getActivity());
-        PrestamosEditableRecyclerAdapter prestamosEditableRecyclerAdapter = new PrestamosEditableRecyclerAdapter(autorList1, HomeFragment.this.requireActivity(), getActivity());
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentActivity fragmentActivity = getActivity();
+        Context context = globalRoot.getContext();
+
+        AutoresEditableRecyclerAdapter autoresEditableRecyclerAdapter = new AutoresEditableRecyclerAdapter(autorList, context, fragmentManager);
+        ColeccionEditableRecyclerAdapter coleccionEditableRecyclerAdapter = new ColeccionEditableRecyclerAdapter(coleccionList, context, fragmentManager);
+        ColeccionLibroEditableRecyclerAdapter coleccionLibroEditableRecyclerAdapter = new ColeccionLibroEditableRecyclerAdapter(coleccionLibroList, context, fragmentManager);
+        ComprasEditableRecyclerAdapter comprasEditableRecyclerAdapter = new ComprasEditableRecyclerAdapter(compraList, context, fragmentManager);
+        InventariosEditableRecyclerAdapter inventariosEditableRecyclerAdapter = new InventariosEditableRecyclerAdapter(inventarioList, context, fragmentManager);
+        LibroDeseadoEditableRecyclerAdapter libroDeseadoEditableRecyclerAdapter = new LibroDeseadoEditableRecyclerAdapter(libroDeseadoList, context, fragmentManager);
+        LibrosEditableRecyclerAdapter librosEditableRecyclerAdapter = new LibrosEditableRecyclerAdapter(libroList, context, fragmentManager);
+        PrestamosEditableRecyclerAdapter prestamosEditableRecyclerAdapter = new PrestamosEditableRecyclerAdapter(autorList1, context, fragmentManager);
 
         List<String> adapters = new ArrayList<>();
         adapters.add("Autores");

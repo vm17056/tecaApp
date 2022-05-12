@@ -104,6 +104,7 @@ public class HomeSpinnerAdapter extends AbsSpinnerAdapter<String> {
                             recyclerView.setAdapter(prestamosEditableRecyclerAdapte);
                             break;
                     }
+
                 }
             });
 

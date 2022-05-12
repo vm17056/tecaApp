@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
@@ -21,17 +21,17 @@ public abstract class AbsTextBtnEditReciclerAdapter<Elenty> extends RecyclerView
 
     private final List<Elenty> items;
     private final Context context;
-    private final FragmentActivity fragmentActivity;
+    private final FragmentManager fragmentManager;
 
     protected MaterialTextView materialTextView;
     public MaterialButton materialButton;
     public ConstraintLayout layout;
     public TextBtnEditHolder<Elenty> viewHolder = null;
 
-    public AbsTextBtnEditReciclerAdapter(List<Elenty> items, Context context, FragmentActivity fragmentActivity) {
+    public AbsTextBtnEditReciclerAdapter(List<Elenty> items, Context context, FragmentManager fragmentManager) {
         this.items = items;
         this.context = context;
-        this.fragmentActivity = fragmentActivity;
+        this.fragmentManager = fragmentManager;
     }
 
     @NonNull

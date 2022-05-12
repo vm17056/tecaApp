@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.sv.proye.tecaapp.models.Compra;
 import com.sv.proye.tecaapp.utils.DateUtils;
@@ -18,12 +19,12 @@ public class ComprasEditableRecyclerAdapter extends AbsTextBtnEditReciclerAdapte
 
     //    private LayoutInflater layoutInflater;
 //    private Context context;
-    private FragmentActivity fragmentActivity;
+    private FragmentManager fragmentActivity;
 
-    public ComprasEditableRecyclerAdapter(List<Compra> lista, Context context, FragmentActivity fragmentActivity) {
+    public ComprasEditableRecyclerAdapter(List<Compra> lista, Context context, FragmentManager fragmentActivity) {
         super(lista, context, fragmentActivity);
 //        this.context = context;
-//        this.fragmentActivity = fragmentActivity;
+        this.fragmentActivity = fragmentActivity;
     }
 
     @Override

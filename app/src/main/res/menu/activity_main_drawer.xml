@@ -10,6 +10,11 @@
             android:title="@string/menu_home" />
 
         <item
+            android:id="@+id/nav_lista_libros"
+            android:icon="@drawable/ic_book"
+            android:title="@string/list_libros" />
+
+        <item
             android:id="@+id/nav_coleccion"
             android:icon="@drawable/ic_collections"
             android:title="@string/menu_coleccion" />
