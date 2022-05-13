@@ -49,6 +49,7 @@ public class ListaLibrosReciclerAdapter extends RecyclerView.Adapter<ListaLibros
                             historialLeido.setLibro(data.getLibro());
                             historialLeido.setUsuario(StaticUtils.usuario);
                             historialLeidoDao.almacenarModelo(historialLeido);
+                            leidoBtn.setImageResource(R.drawable.ic_eye);
                         }
                     });
                 }
@@ -62,6 +63,7 @@ public class ListaLibrosReciclerAdapter extends RecyclerView.Adapter<ListaLibros
                             favorito.setLibro(data.getLibro());
                             favorito.setUsuario(StaticUtils.usuario);
                             favoritoDao.almacenarModelo(favorito);
+                            favoritoBtn.setImageResource(R.drawable.ic_star);
                         }
                     });
                 }

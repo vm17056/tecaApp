@@ -80,7 +80,7 @@ public class ComprasFragment extends Fragment {
     private void cargarDatos(Compra o) {
         if (o != null) {
             inputCantidad.setValue(o.getCantidad());
-            inputFechaCompra.getCalendarView().setDate(o.getFechaCompra().getTime());
+            DateUtils.setDateToPicker(inputFechaCompra, o.getFechaCompra());
             inputPrecio.setText(String.valueOf(o.getPrecioUnitario()));
             inputCodigo.setText(o.getCodigoCompra());
         }
@@ -88,23 +88,31 @@ public class ComprasFragment extends Fragment {
 
     private void guardarCompra() {
         if (validarDatos()) {
-            Long registrado = compraDao.almacenarModelo(recolectarDatos());
-            if (registrado == -1) {
+            Long registrado = -1L;
+            if (compraSelected != null){
+                registrado = (long) compraDao.actualizarModelo(recolectarDatos());
+            }else{
+                registrado = compraDao.almacenarModelo(recolectarDatos());
+            }
+            if (registrado == -1 || registrado == 0){
                 MessageUtils.displayFail(getResources().getString(R.string.database_error), ComprasFragment.this.requireActivity());
             } else {
-                Compra compra = compraDao.buscarModeloPodId(registrado.intValue());
-                if (compra != null) {
-                    System.out.println("Compra registrada **** " + compra);
-                    Inventario inventario = compra.getInventario();
-                    Integer nuevaCantidad = inventario.getCantidad() + compra.getCantidad();
-                    inventario.setCantidad(nuevaCantidad);
-                    Integer actializado = inventarioDao.actualizarModelo(inventario);
-                    if (actializado > 0) {
-                        MessageUtils.displaySuccess("Compra Registrada", ComprasFragment.this.requireActivity());
-                    } else {
-                        MessageUtils.displayWarming(getResources().getString(R.string.database_update_error), ComprasFragment.this.requireActivity());
+                if (compraSelected == null){
+                    Compra compra = compraDao.buscarModeloPodId(registrado.intValue());
+                    if (compra != null) {
+                        System.out.println("Compra registrada **** " + compra);
+                        Inventario inventario = compra.getInventario();
+                        Integer nuevaCantidad = inventario.getCantidad() + compra.getCantidad();
+                        inventario.setCantidad(nuevaCantidad);
+                        Integer actializado = inventarioDao.actualizarModelo(inventario);
+                        if (actializado > 0) {
+                            MessageUtils.displaySuccess("Compra Registrada", ComprasFragment.this.requireActivity());
+                        } else {
+                            MessageUtils.displayWarming(getResources().getString(R.string.database_update_error), ComprasFragment.this.requireActivity());
+                        }
                     }
                 }
+                compraSelected = null;
             }
         } else {
             MessageUtils.displayWarming(getResources().getString(R.string.validation_invalid), ComprasFragment.this.requireActivity());

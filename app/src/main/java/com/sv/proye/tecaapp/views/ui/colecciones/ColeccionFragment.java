@@ -83,8 +83,14 @@ public class ColeccionFragment extends Fragment {
 
     private void guardarColeccio() {
         if (validarDatos()) {
-            Long registrado = coleccionDao.almacenarModelo(recolectarDatos());
-            if (registrado == -1)
+            Long registrado = -1L;
+            if (coleccionSelected != null){
+                registrado = (long) coleccionDao.actualizarModelo(recolectarDatos());
+                coleccionSelected = null;
+            }else{
+                registrado = coleccionDao.almacenarModelo(recolectarDatos());
+            }
+            if (registrado == -1 || registrado == 0)
                 MessageUtils.displayFail(getResources().getString(R.string.database_error), ColeccionFragment.this.requireActivity());
             else
                 MessageUtils.displaySuccess("Coleccion registrada", ColeccionFragment.this.requireActivity());

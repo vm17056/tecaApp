@@ -72,7 +72,7 @@ public class InventarioFragment extends Fragment {
     private void cargarDatos(Inventario o) {
         if (o != null) {
             inputCantidad.setValue(o.getCantidad());
-            inputFechaActualizado.getCalendarView().setDate(o.getFechaActualizado().getTime());
+            DateUtils.setDateToPicker(inputFechaActualizado, o.getFechaActualizado());
         }
     }
 
@@ -90,8 +90,14 @@ public class InventarioFragment extends Fragment {
 
     private void guardarInventario() {
         if (validarDatos()) {
-            Long registrado = inventarioDao.almacenarModelo(recolectarDatos());
-            if (registrado == -1)
+            Long registrado = -1L;
+            if (inventarioSelected != null) {
+                registrado = (long) inventarioDao.actualizarModelo(recolectarDatos());
+                inventarioSelected = null;
+            } else {
+                registrado = inventarioDao.almacenarModelo(recolectarDatos());
+            }
+            if (registrado == -1 || registrado == 0)
                 MessageUtils.displayFail(getResources().getString(R.string.database_error), InventarioFragment.this.requireActivity());
             else
                 MessageUtils.displaySuccess("Inventario Registrado", InventarioFragment.this.requireActivity());

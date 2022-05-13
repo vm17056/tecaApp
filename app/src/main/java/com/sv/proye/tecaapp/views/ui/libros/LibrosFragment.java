@@ -75,14 +75,20 @@ public class LibrosFragment extends Fragment {
         if (o != null) {
             inputCodigo.setText(o.getCodigo());
             inputNombre.setText(o.getNombre());
-            inputFechaPublicacion.getCalendarView().setDate(o.getFechaPublicacion().getTime());
+            DateUtils.setDateToPicker(inputFechaPublicacion, o.getFechaPublicacion());
         }
     }
 
     private void guardarLibro() {
         if (validarDatos()) {
-            Long registrado = libroDao.almacenarModelo(recolectarDatos());
-            if (registrado == -1)
+            Long registrado = -1L;
+            if (libroSelected != null) {
+                registrado = (long) libroDao.actualizarModelo(recolectarDatos());
+                libroSelected = null;
+            } else {
+                registrado = libroDao.almacenarModelo(recolectarDatos());
+            }
+            if (registrado == -1 || registrado == 0)
                 MessageUtils.displayFail(getResources().getString(R.string.database_error), LibrosFragment.this.requireActivity());
             else
                 MessageUtils.displaySuccess("Libro Registrado", LibrosFragment.this.requireActivity());

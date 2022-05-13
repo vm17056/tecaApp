@@ -71,8 +71,8 @@ public class AutoresFragment extends Fragment {
         if (autor != null) {
             inputNombre.setText(autor.getNombre());
             inputApellido.setText(autor.getApellido());
-            inputFechaNacimiento.getCalendarView().setDate(autor.getFechaNacimiento().getTime());
-            inputFechaDefuncion.getCalendarView().setDate(autor.getFechaDefuncion().getTime());
+            DateUtils.setDateToPicker(inputFechaNacimiento, autor.getFechaNacimiento());
+            DateUtils.setDateToPicker(inputFechaDefuncion, autor.getFechaDefuncion());
             inputFallecido.setText(autor.getFallecido() ? getResources().getString(R.string.yes) : getResources().getString(R.string.not));
         }
     }
@@ -130,8 +130,14 @@ public class AutoresFragment extends Fragment {
 
     private void guardarAutor() {
         if (validarDatos()) {
-            Long registrado = autorDao.almacenarModelo(recolectarDatos());
-            if (registrado == -1)
+            Long registrado = -1L;
+            if (autorSelected != null){
+                registrado = (long) autorDao.actualizarModelo(recolectarDatos());
+                autorSelected = null;
+            }else{
+                registrado = autorDao.almacenarModelo(recolectarDatos());
+            }
+            if (registrado == -1 || registrado == 0)
                 MessageUtils.displayFail(getResources().getString(R.string.database_error), AutoresFragment.this.requireActivity());
             else
                 MessageUtils.displaySuccess("Autor Registrado", AutoresFragment.this.requireActivity());

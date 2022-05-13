@@ -64,8 +64,14 @@ public class ColeccionLibroFragment extends Fragment {
 
     private void guardarColeccionLibro() {
         if (validarDatos()) {
-            Long registrado = coleccionLibroDao.almacenarModelo(recolectarDatos());
-            if (registrado == -1)
+            Long registrado = -1L;
+            if (coleccionSelected != null){
+                registrado = (long) coleccionLibroDao.actualizarModelo(recolectarDatos());
+                coleccionSelected = null;
+            }else{
+                registrado = coleccionLibroDao.almacenarModelo(recolectarDatos());
+            }
+            if (registrado == -1 || registrado == 0)
                 MessageUtils.displayFail(getResources().getString(R.string.database_error), ColeccionLibroFragment.this.requireActivity());
             else
                 MessageUtils.displaySuccess("Coleccion de libro registrada", ColeccionLibroFragment.this.requireActivity());

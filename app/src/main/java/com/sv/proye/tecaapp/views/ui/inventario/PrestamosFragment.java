@@ -87,16 +87,22 @@ public class PrestamosFragment extends Fragment {
     private void cargarDatos(Prestamo o) {
         if (o != null) {
             inputCantidad.setValue(o.getCantidad());
-            inputFechaPrestamo.getCalendarView().setDate(o.getFechaPrestamo().getTime());
-            inputFechaEntrega.getCalendarView().setDate(o.getFechaEntrega().getTime());
+            DateUtils.setDateToPicker(inputFechaPrestamo, o.getFechaPrestamo());
+            DateUtils.setDateToPicker(inputFechaEntrega, o.getFechaEntrega());
             inputEntregado.setText(o.getDevuelto() ? getResources().getString(R.string.yes) : getResources().getString(R.string.not));
         }
     }
 
     private void guardarPrestamo() {
         if (validarDatos()) {
-            Long registrado = prestamoDao.almacenarModelo(recolectarDatos());
-            if (registrado == -1)
+            Long registrado = -1L;
+            if (prestamoSeleced != null) {
+                registrado = (long) prestamoDao.actualizarModelo(recolectarDatos());
+                prestamoSeleced = null;
+            } else {
+                registrado = prestamoDao.almacenarModelo(recolectarDatos());
+            }
+            if (registrado == -1 || registrado == 0)
                 MessageUtils.displayFail(getResources().getString(R.string.database_error), PrestamosFragment.this.requireActivity());
             else
                 MessageUtils.displaySuccess("Prestamo Registrado", PrestamosFragment.this.requireActivity());

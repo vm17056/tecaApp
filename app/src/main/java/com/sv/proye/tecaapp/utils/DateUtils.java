@@ -1,6 +1,9 @@
 package com.sv.proye.tecaapp.utils;
 
+import android.widget.DatePicker;
+
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -19,5 +22,12 @@ public class DateUtils {
 
     public static Date getActualDate() {
         return new Date();
+    }
+
+    public static DatePicker setDateToPicker(DatePicker datePicker,Date date){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        datePicker.init(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DATE),null);
+        return datePicker;
     }
 }

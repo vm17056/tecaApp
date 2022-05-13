@@ -64,15 +64,21 @@ public class LibroDeseadoFragment extends Fragment {
 
     private void guardarLibro() {
         if (validarDatos()) {
-            Usuario registrar = recolectarDatos().getUsuario();
-            if (registrar != null) {
-                Long registrado = libroDeseadoDao.almacenarModelo(recolectarDatos());
-                if (registrado == -1)
+            Usuario usuario = recolectarDatos().getUsuario();
+            if (usuario != null) {
+                Long registrado = -1L;
+                if (libroDeseadoSelected != null) {
+                    registrado = (long) libroDeseadoDao.actualizarModelo(recolectarDatos());
+                    libroDeseadoSelected = null;
+                } else {
+                    registrado = libroDeseadoDao.almacenarModelo(recolectarDatos());
+                }
+                if (registrado == -1 || registrado == 0)
                     MessageUtils.displayFail(getResources().getString(R.string.database_error), LibroDeseadoFragment.this.requireActivity());
                 else
                     MessageUtils.displaySuccess("Libro Deseado Registrado", LibroDeseadoFragment.this.requireActivity());
             } else {
-                MessageUtils.displaySuccess("Libro Deseado Registrado", LibroDeseadoFragment.this.requireActivity());
+                MessageUtils.displaySuccess("Ocurrio un error", LibroDeseadoFragment.this.requireActivity());
             }
         } else {
             MessageUtils.displayWarming(getResources().getString(R.string.validation_invalid), LibroDeseadoFragment.this.requireActivity());
